@@ -40,8 +40,8 @@
 
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAqLmZuwhlFih2of7XrBYIDBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSRq8rvO9-jrIiIctVwdw3u0Vul2w" type="text/javascript"></script>		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-		<script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
-        <link rel="stylesheet" href="/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.1.pack.js"></script>
+        <link rel="stylesheet" href="fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="Embassy.map.js"></script>
         
 <script language="javascript">
@@ -402,12 +402,14 @@ case "quiz":
 
 		$("a#normal").fancybox({
 			'hideOnContentClick': false,
+			'onStart': Embassy.NormalMap,
 			'overlayShow': false,
 			'padding': 5
 		});
 		
 		$("a#street").fancybox({
 			'hideOnContentClick': false,
+			'onStart': Embassy.StreetView,
 			'overlayShow': false,
 			'padding': 5
 		});

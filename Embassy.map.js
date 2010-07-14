@@ -26,8 +26,8 @@ if (!this.Embassy)
 				return;
 			}
 			
-			this.NormalMap();
-			this.StreetView();
+		//	this.NormalMap();
+		//	this.StreetView();
 		};
 
 		Embassy.NormalMap = function(){
