@@ -17,6 +17,11 @@ if (!this.Embassy)
 				return;
 			}
 			
+			if(mapOptions.markers !== undefined)
+			{
+				console.log(mapOptions.markers);
+			}
+			
 			options = mapOptions;
 			
 			LatLng = new GLatLng(options.lat, options.lng);
