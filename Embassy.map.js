@@ -65,20 +65,14 @@ if (!this.Embassy)
             normalMap.addControl(new GMapTypeControl());
             normalMap.setCenter(Embassy.MapOrigin() ,14);
 			
-			// Add the marker
-			var markerSettings = [{
-				lat: options.lat,
-				lng: options.lng,
-				text: options.infoText
-			},
+	
+			if (options.markers === undefined)
 			{
-				lat: options.lat - .005,
-				lng: options.lng + .005,
-				text: "Hello"
-			}];
+				return;
+			}
 			
-			for (var i = 0; i < markerSettings.length; i++) {
-				Embassy.AddMarker(normalMap, markerSettings[i]);
+			for (var i = 0; i < options.markers.length; i++) {
+				Embassy.AddMarker(normalMap, options.markers[i]);
 			}
 
 		};
@@ -88,7 +82,8 @@ if (!this.Embassy)
 			var position = Embassy.MakeLatLng(data.lat, data.lng);
 			map.openInfoWindow(position, data.text );
 			
-            var marker = new GMarker(position);          
+            var marker = new GMarker(position);  
+			
 			GEvent.addListener(marker,"click", function() {
 				map.openInfoWindow(position, data.text );
               });
