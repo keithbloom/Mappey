@@ -24,15 +24,15 @@ if (!this.Embassy)
 			
 			options = mapOptions;
 			
-			LatLng = new GLatLng(options.lat, options.lng);
-			
-			if(LatLng === null)
-			{
-				return;
-			}
-			
-		//	this.NormalMap();
-		//	this.StreetView();
+		};
+		
+		Embassy.MapOrigin = function(){
+		
+				if (LatLng === null)
+				{
+					LatLng = new GLatLng(options.lat, options.lng);
+				}
+				return LatLng;
 		};
 
 		Embassy.NormalMap = function(){
@@ -51,7 +51,7 @@ if (!this.Embassy)
 			
 			var googleOptions = {
 				zoom: 12,
-				center: LatLng,
+				center: Embassy.MapOrigin(),
 				size: new GSize(div.offsetHeight, div.offsetWidth)
 				};
 
@@ -80,7 +80,7 @@ if (!this.Embassy)
 			}
 						
 			var panoOptions = {
-				latlng: LatLng,
+				latlng: Embassy.MapOrigin(),
 				features: {
 					userPhotos: false
 				}
