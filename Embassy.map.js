@@ -30,10 +30,14 @@ if (!this.Embassy)
 		
 				if (LatLng === null)
 				{
-					LatLng = new GLatLng(options.lat, options.lng);
+					LatLng = Embassy.MakeLatLng(options.lat, options.lng);
 				}
 				return LatLng;
 		};
+		
+		Embassy.MakeLatLng = function(lat, lng){
+			return new GLatLng(lat, lng);
+		}
 
 		Embassy.NormalMap = function(){
 
@@ -62,12 +66,17 @@ if (!this.Embassy)
             normalMap.setCenter(Embassy.MapOrigin() ,14);
 			
 			// Add the marker
+			var markerSettings = {
+				lat: options.lat,
+				lng: options.lng,
+				text: options.infoText
+			};
 			Embassy.AddMarker(normalMap);
 
 		};
 		
 		Embassy.AddMarker = function(map){
-			map.openInfoWindow(map.getCenter(), options.infoText );
+			map.openInfoWindow(Embassy.MapOrigin(), options.infoText );
             var marker = new GMarker(Embassy.MapOrigin());          
 			GEvent.addListener(marker,"click", function() {
 				map.openInfoWindow(Embassy.MapOrigin(), options.infoText );
