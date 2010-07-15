@@ -55,21 +55,24 @@ if (!this.Embassy)
 				size: new GSize(div.offsetHeight, div.offsetWidth)
 				};
 
+			// Create the map				
 			normalMap = new GMap2(div, googleOptions);
-            
-			normalMap.addControl(new GSmallMapControl());
+            normalMap.addControl(new GSmallMapControl());
             normalMap.addControl(new GMapTypeControl());
+            normalMap.setCenter(Embassy.MapOrigin() ,14);
+			
+			// Add the marker
+			Embassy.AddMarker(normalMap);
 
-            normalMap.setCenter(LatLng ,14);
-            normalMap.openInfoWindow(normalMap.getCenter(), options.infoText );
-
-            var marker = new GMarker(LatLng);
-           
+		};
+		
+		Embassy.AddMarker = function(map){
+			map.openInfoWindow(map.getCenter(), options.infoText );
+            var marker = new GMarker(Embassy.MapOrigin());          
 			GEvent.addListener(marker,"click", function() {
-				normalMap.openInfoWindow(LatLng, options.infoText );
+				map.openInfoWindow(Embassy.MapOrigin(), options.infoText );
               });
-			  
-            normalMap.addOverlay(marker);
+            map.addOverlay(marker);
 		};
 		
 		Embassy.StreetView = function(){
