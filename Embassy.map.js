@@ -17,11 +17,6 @@ if (!this.Embassy)
 				return;
 			}
 			
-			if(mapOptions.markers !== undefined)
-			{
-				console.log(mapOptions.markers);
-			}
-			
 			options = mapOptions;
 			
 		};
