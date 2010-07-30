@@ -14,10 +14,16 @@ if (!this.Embassy)
 				return;
 			}
 			
+<<<<<<< HEAD
 			if(options === null)
 			{
 				options = new Array();
 			}
+=======
+			options = mapOptions;
+			
+		};
+>>>>>>> d46080e6f29bb2588812efa975ea78cf883e1ec5
 		
 			mapOptions = Embassy.Init(mapOptions);
 		
