@@ -157,7 +157,7 @@ case "quiz":
   <script>
 	
 			
-			var mapOptions = {
+			var normalMap = {
                 lat: 40.7472,
                 lng: -73.993399,
 				markers: [
@@ -177,8 +177,18 @@ case "quiz":
 				height: 700,
 				width: 400
             }; 
+			
+			var streetView = {
+                lat: 40.7472,
+                lng: -73.993399,
+				name: 'GoogleMap2',
+				type: 'streetView',
+				height: 700,
+				width: 400
+            }; 
             
-			Embassy.Map(mapOptions)
+			Embassy.Map(normalMap);
+			Embassy.Map(streetView);
 			
 			$(document).ready(function() {
 
@@ -191,7 +201,7 @@ case "quiz":
 		
 		$("a#street").fancybox({
 			'hideOnContentClick': false,
-			'onStart': Embassy.StreetView,
+			'onStart': function () { Embassy.ShowMap('GoogleMap2'); },
 			'overlayShow': false,
 			'padding': 5
 		});

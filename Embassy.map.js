@@ -23,12 +23,20 @@ if (!this.Embassy)
 				options = new Array();
 			}
 		
+			mapOptions = Embassy.Init(mapOptions);
+		
 			options.push(mapOptions);
 			
 			console.log(options.length);
 			
 		};
 		
+		Embassy.Init = function (opt) {
+			opt.origin = Embassy.MapOrigin(opt);
+			opt.div = document.getElementById(opt.name);
+			
+			return opt;
+		}
 		
 		Embassy.MakeLatLng = function(lat, lng){
 			return new GLatLng(lat, lng);
@@ -38,26 +46,25 @@ if (!this.Embassy)
 			for(var i = 0; i < options.length; i++) 
 			{
 				if (options[i].name === name) {
+				
 					if (options[i].map !== undefined) {
 						return;
 					}
-					options[i].origin = Embassy.MapOrigin(options[i]);
-					
+										
 					if (options[i].type === 'normal') {
 						options[i].map = Embassy.NormalMap(options[i]);
 					}
-					if (options.type === 'streetView') {
-						options[i].map = Embassy.StreetView(options[i]);
-					}
+				
+					if (options[i].type === 'streetView') {
+							options[i].map = Embassy.StreetView(options[i]);
+						}
 				}
 			}
 		}
 
 		Embassy.NormalMap = function(target){
-			console.log(target);
-			var div = document.getElementById(target.name);
-			
-			if(div === null)
+				
+			if(target.div === null)
 			{
 				return;
 			}
@@ -69,7 +76,7 @@ if (!this.Embassy)
 				};
 
 			// Create the map				
-			target.map = new GMap2(div, googleOptions);
+			target.map = new GMap2(target.div, googleOptions);
             target.map.addControl(new GSmallMapControl());
             target.map.addControl(new GMapTypeControl());
             target.map.setCenter(target.origin ,14);
@@ -86,27 +93,23 @@ if (!this.Embassy)
 
 		};
 		
-		Embassy.StreetView = function(){
-			console.log("Hello");
-			if (streetMap !== null || options.streetViewMapDiv === undefined) {
+		Embassy.StreetView = function(target){
+			
+			console.log(target.name + " " + target.div);
+			
+			if(target.div === undefined)
+			{
 				return;
 			}
-						
+			console.log(target.div);	
 			var panoOptions = {
-				latlng: Embassy.MapOrigin(),
+				latlng: target.origin,
 				features: {
 					userPhotos: false
 				}
 			};
 			
-			var div = document.getElementById(options.streetViewMapDiv);
-			
-			if(div === null)
-			{
-				return;
-			}
-			
-			streetMap = new GStreetviewPanorama(div, panoOptions);
+			target.map = new GStreetviewPanorama(target.div, panoOptions);
 			
 			var handleNoFlash = function (errorCode) {
 				if (errorCode == FLASH_UNAVAILABLE)  {
@@ -115,7 +118,7 @@ if (!this.Embassy)
 				  }
 			};
 			
-			GEvent.addListener(streetMap, "error", handleNoFlash);
+			GEvent.addListener(target.map, "error", handleNoFlash);
 
 		  };
 		
