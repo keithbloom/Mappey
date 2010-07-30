@@ -5,11 +5,7 @@ if (!this.Embassy)
 		
 	(function (){
 
-		var normalMap = null;
-		var maps = null;
-		var streetMap = null;
 		var options = null;
-		var LatLng = null;
 
 		Embassy.Map = function(mapOptions){
 			
@@ -26,14 +22,20 @@ if (!this.Embassy)
 			mapOptions = Embassy.Init(mapOptions);
 		
 			options.push(mapOptions);
-			
-			console.log(options.length);
-			
+				
 		};
 		
 		Embassy.Init = function (opt) {
 			opt.origin = Embassy.MapOrigin(opt);
+			
+			
+			var newDiv = '<div style="height: 0; overflow: hidden;"><div id="' + opt.name + '" style="width:550px; height:400px;"></div></div>'
+			var newListItem = '<li id="icon" class="map"><a id="normal" href="#' + opt.name + '">' + opt.name + '</a></li>';
+			
+			$("#mapDivs").append(newDiv);
+			$("#mapLinks").append(newListItem);
 			opt.div = document.getElementById(opt.name);
+			
 			
 			return opt;
 		}
@@ -43,6 +45,7 @@ if (!this.Embassy)
 		}
 		
 		Embassy.ShowMap = function(name) {
+						
 			for(var i = 0; i < options.length; i++) 
 			{
 				if (options[i].name === name) {
@@ -95,13 +98,11 @@ if (!this.Embassy)
 		
 		Embassy.StreetView = function(target){
 			
-			console.log(target.name + " " + target.div);
-			
 			if(target.div === undefined)
 			{
 				return;
 			}
-			console.log(target.div);	
+
 			var panoOptions = {
 				latlng: target.origin,
 				features: {
