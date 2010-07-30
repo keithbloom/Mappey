@@ -165,7 +165,7 @@ case "quiz":
 					text: "Keith's house"
 					}
 				],
-		name: 'GoogleMap',
+		name: 'Map',
 		type: 'normal',
 		height: 700,
 		width: 400
@@ -175,32 +175,22 @@ case "quiz":
 	var streetView = {
 		lat: 40.7472,
 		lng: -73.993399,
-		name: 'GoogleMap2',
+		name: 'StreetView',
 		type: 'streetView',
 		height: 700,
 		width: 400
 	}; 
-	
 	$(document).ready(function () {Embassy.Map(normalMap); } );
-			
-			
-	$(document).ready(function() {
-
-	$("a#normal").fancybox({
-		'hideOnContentClick': false,
-		'onStart': function () { Embassy.ShowMap('GoogleMap'); },
-		'overlayShow': false,
-		'padding': 5
-	});
 	
-	$("a#street").fancybox({
-		'hideOnContentClick': false,
-		'onStart': function () { Embassy.ShowMap('GoogleMap2'); },
-		'overlayShow': false,
-		'padding': 5
-	});
-	 
-});
+	var anotherMap = {
+		lat: 40.7472,
+		lng: -73.993399,
+		name: 'School',
+		type: 'normal',
+		height: 700,
+		width: 400
+	}; 
+	$(document).ready(function () {Embassy.Map(anotherMap); } );
 	</script>      
 
 	
@@ -211,7 +201,9 @@ case "quiz":
 		<ul id="mapLinks">
 		</ul>
 	</div>
-						 
+
+
+	
                                         <div class="side_buffer">
                                             <H1>Welcome to Embassy New York!</H1>
 <H2>Why New York? </H2>

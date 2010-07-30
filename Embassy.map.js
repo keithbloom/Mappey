@@ -30,10 +30,18 @@ if (!this.Embassy)
 			
 			
 			var newDiv = '<div style="height: 0; overflow: hidden;"><div id="' + opt.name + '" style="width:550px; height:400px;"></div></div>'
-			var newListItem = '<li id="icon" class="map"><a id="normal" href="#' + opt.name + '">' + opt.name + '</a></li>';
+			var newListItem = '<li id="icon" class="' + opt.type + '"><a id="' + opt.name + '" href="#' + opt.name + '">' + opt.name + '</a></li>';
 			
 			$("#mapDivs").append(newDiv);
 			$("#mapLinks").append(newListItem);
+			
+			$("a#" + opt.name).fancybox({
+				'hideOnContentClick': false,
+				'onStart': function () { Embassy.ShowMap(opt.name); },
+				'overlayShow': false,
+				'padding': 5
+			});
+			
 			opt.div = document.getElementById(opt.name);
 			
 			
