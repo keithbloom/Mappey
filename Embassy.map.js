@@ -6,6 +6,7 @@ if (!this.Embassy)
 	(function (){
 
 		var normalMap = null;
+		var maps = null;
 		var streetMap = null;
 		var options = null;
 		var LatLng = null;
@@ -17,36 +18,44 @@ if (!this.Embassy)
 				return;
 			}
 			
-			if(mapOptions.markers !== undefined)
+			if(options === null)
 			{
-				console.log(mapOptions.markers);
+				options = new Array();
 			}
+		
+			options.push(mapOptions);
 			
-			options = mapOptions;
+			console.log(options.length);
 			
 		};
 		
-		Embassy.MapOrigin = function(){
-		
-				if (LatLng === null)
-				{
-					LatLng = Embassy.MakeLatLng(options.lat, options.lng);
-				}
-				return LatLng;
-		};
 		
 		Embassy.MakeLatLng = function(lat, lng){
 			return new GLatLng(lat, lng);
 		}
-
-		Embassy.NormalMap = function(){
-
-			if (normalMap !== null || options.normalMapDiv === null)
+		
+		Embassy.ShowMap = function(name) {
+			for(var i = 0; i < options.length; i++) 
 			{
-				return;
+				if (options[i].name === name) {
+					if (options[i].map !== undefined) {
+						return;
+					}
+					options[i].origin = Embassy.MapOrigin(options[i]);
+					
+					if (options[i].type === 'normal') {
+						options[i].map = Embassy.NormalMap(options[i]);
+					}
+					if (options.type === 'streetView') {
+						options[i].map = Embassy.StreetView(options[i]);
+					}
+				}
 			}
-			
-			var div = document.getElementById(options.normalMapDiv);
+		}
+
+		Embassy.NormalMap = function(target){
+			console.log(target);
+			var div = document.getElementById(target.name);
 			
 			if(div === null)
 			{
@@ -55,44 +64,30 @@ if (!this.Embassy)
 			
 			var googleOptions = {
 				zoom: 12,
-				center: Embassy.MapOrigin(),
-				size: new GSize(div.offsetHeight, div.offsetWidth)
+				center: target.origin,
+				size: new GSize(target.width,target.height)
 				};
 
 			// Create the map				
-			normalMap = new GMap2(div, googleOptions);
-            normalMap.addControl(new GSmallMapControl());
-            normalMap.addControl(new GMapTypeControl());
-            normalMap.setCenter(Embassy.MapOrigin() ,14);
+			target.map = new GMap2(div, googleOptions);
+            target.map.addControl(new GSmallMapControl());
+            target.map.addControl(new GMapTypeControl());
+            target.map.setCenter(target.origin ,14);
 			
 	
-			if (options.markers === undefined)
+			if (target.markers === undefined)
 			{
 				return;
 			}
 			
-			for (var i = 0; i < options.markers.length; i++) {
-				Embassy.AddMarker(normalMap, options.markers[i]);
+			for (var i = 0; i < target.markers.length; i++) {
+				Embassy.AddMarker(target.map, target.markers[i]);
 			}
 
 		};
 		
-		Embassy.AddMarker = function(map, data){
-		
-			var position = Embassy.MakeLatLng(data.lat, data.lng);
-			map.openInfoWindow(position, data.text );
-			
-            var marker = new GMarker(position);  
-			
-			GEvent.addListener(marker,"click", function() {
-				map.openInfoWindow(position, data.text );
-              });
-            map.addOverlay(marker);
-		};
-		
 		Embassy.StreetView = function(){
-		
-
+			console.log("Hello");
 			if (streetMap !== null || options.streetViewMapDiv === undefined) {
 				return;
 			}
@@ -123,6 +118,31 @@ if (!this.Embassy)
 			GEvent.addListener(streetMap, "error", handleNoFlash);
 
 		  };
+		
+		
+		Embassy.MapOrigin = function(opt){
+			
+			if (opt.origin === undefined)
+			{
+				return Embassy.MakeLatLng(opt.lat, opt.lng);
+			}
+			return opt.origin;
+		};
+
+		
+		Embassy.AddMarker = function(map, data){
+		
+			var position = Embassy.MakeLatLng(data.lat, data.lng);
+			map.openInfoWindow(position, data.text );
+			
+            var marker = new GMarker(position);  
+			
+			GEvent.addListener(marker,"click", function() {
+				map.openInfoWindow(position, data.text );
+              });
+            map.addOverlay(marker);
+		};
+		
 		}());
 		
 
