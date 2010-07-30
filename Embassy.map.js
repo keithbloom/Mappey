@@ -14,26 +14,16 @@ if (!this.Embassy)
 				return;
 			}
 			
-<<<<<<< HEAD
 			if(options === null)
 			{
 				options = new Array();
 			}
-=======
-			options = mapOptions;
-			
-		};
->>>>>>> d46080e6f29bb2588812efa975ea78cf883e1ec5
 		
-			mapOptions = Embassy.Init(mapOptions);
-		
-			options.push(mapOptions);
-				
+			options.push(Embassy.Init(mapOptions));	
 		};
 		
 		Embassy.Init = function (opt) {
 			opt.origin = Embassy.MapOrigin(opt);
-			
 			
 			var newDiv = '<div style="height: 0; overflow: hidden;"><div id="' + opt.name + '" style="width:550px; height:400px;"></div></div>'
 			var newListItem = '<li id="icon" class="' + opt.type + '"><a id="' + opt.name + '" href="#' + opt.name + '">' + opt.name + '</a></li>';
@@ -50,7 +40,6 @@ if (!this.Embassy)
 			
 			opt.div = document.getElementById(opt.name);
 			
-			
 			return opt;
 		}
 		
@@ -63,7 +52,7 @@ if (!this.Embassy)
 			for(var i = 0; i < options.length; i++) 
 			{
 				if (options[i].name === name) {
-				
+					console.log(options[i].map);
 					if (options[i].map !== undefined) {
 						return;
 					}
@@ -73,8 +62,8 @@ if (!this.Embassy)
 					}
 				
 					if (options[i].type === 'streetView') {
-							options[i].map = Embassy.StreetView(options[i]);
-						}
+						options[i].map = Embassy.StreetView(options[i]);
+					}
 				}
 			}
 		}
@@ -97,16 +86,17 @@ if (!this.Embassy)
             target.map.addControl(new GSmallMapControl());
             target.map.addControl(new GMapTypeControl());
             target.map.setCenter(target.origin ,14);
-			
-	
+
 			if (target.markers === undefined)
 			{
-				return;
+				return target.map;
 			}
 			
 			for (var i = 0; i < target.markers.length; i++) {
 				Embassy.AddMarker(target.map, target.markers[i]);
 			}
+			
+			return target.map;
 
 		};
 		
@@ -134,12 +124,11 @@ if (!this.Embassy)
 			};
 			
 			GEvent.addListener(target.map, "error", handleNoFlash);
-
+			return target.map;
 		  };
 		
 		
 		Embassy.MapOrigin = function(opt){
-			
 			if (opt.origin === undefined)
 			{
 				return Embassy.MakeLatLng(opt.lat, opt.lng);
@@ -161,6 +150,6 @@ if (!this.Embassy)
             map.addOverlay(marker);
 		};
 		
-		}());
+	}());
 		
 
