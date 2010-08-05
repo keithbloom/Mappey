@@ -155,7 +155,15 @@ case "quiz":
  
  <script>
  
-	$(document).ready(function () {Embassy.CreateMap(); });
+ 
+	$(document).ready(function () {Embassy.CreateMap(
+			{
+				streetview: true,
+				streetname: "School Streetview",
+				normalmap: "School location"
+			}); 
+		});
+	
 	var normalMap = {
 		lat: 40.7472,
 		lng: -73.993399,

@@ -32,7 +32,7 @@ if (!this.Embassy)
 			{
 				if(meta[i].name === "geo.placename")
 				{
-					metaMap.displayName = meta[i].content;
+					metaMap.displayName = setup === undefined ? normalmeta[i].content : setup.normalmap;
 				}
 				
 				if(meta[i].name === "geo.position")
@@ -45,13 +45,18 @@ if (!this.Embassy)
 			}
 			
 			metaMap.name = 'schoolmap';
+			Embassy.AddMap(metaMap);
+			
+			if (!setup.streetview) {
+				return;
+			}
 			var metaStreetView = $.extend({}, metaMap);
 			
 			metaStreetView.type = 'streetView';
 			metaStreetView.name = 'schoolstreet';
 			metaStreetView.displayName = 'Meta Street';
 			
-			Embassy.AddMap(metaMap);
+			
 			Embassy.AddMap(metaStreetView);
 			
 			
