@@ -6,6 +6,10 @@
 <title>Embassy : English schools & courses in USA, England, Australia, New Zealand</title>
 <meta name="description" content="Embassy CES: English language courses - study English. English language, English examinations, Business English, vacation English, English lessons.  " />
 <meta name="keywords" content="english, courses, language, schools, learn, lessons, abroad, study, usa, england, australia, new zealand ">
+<meta name="geo.position" content="40.7472;-73.993399">
+<meta name="geo.placename" content="Rockwood Rural Municipality, Manitoba, Canada">
+<meta name="geo.region" content="ca-mb">
+
 
 <link href="/css_v2/reset.css" rel="stylesheet" type="text/css" />
 <link href="/css_v2/core.css" rel="stylesheet" type="text/css" />
@@ -150,30 +154,32 @@ case "quiz":
 
  
  <script>
-	
-	
-	var streetView = {
+ 
+	$(document).ready(function () {Embassy.CreateMap(); });
+	var normalMap = {
 		lat: 40.7472,
 		lng: -73.993399,
-		name: 'schoolsStreetView',
-		displayName: 'School Street View',
-		type: 'streetView',
-		height: 700,
-		width: 400
-	}; 
-	$(document).ready(function () {Embassy.Map(streetView); });
-	
-	
-	var anotherMap = {
-		lat: 40.7472,
-		lng: -73.993399,
-		name: 'School',
-		displayName: 'School Location',
+		markers: [
+					{
+					lat: 40.7472, 
+					lng: -73.993399, 
+					text: "Embassy New York, <BR>328 Seventh Avenue, <BR>NY 10001"
+					},
+					{
+					lat: 40.7412, 
+					lng: -73.993299, 
+					text: "Keith's house"
+					}
+				],
+		name: 'Map',
 		type: 'normal',
+		displayName: 'Lots of map markers',
 		height: 700,
 		width: 400
 	}; 
-	$(document).ready(function () {Embassy.Map(anotherMap); } );
+	$(document).ready(function () {Embassy.AddMap(normalMap); });
+	
+	
 	</script>      
 
 	
