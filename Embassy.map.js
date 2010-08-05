@@ -5,6 +5,16 @@ if (!this.Embassy)
 		
 	(function (){
 
+		var emptyMap = {
+		lat: 0,
+		lng: 0,
+		name: 'Map',
+		type: 'normal',
+		displayName: 'Lots of map markers',
+		height: 700,
+		width: 400
+		}; 
+	
 		var maps = null;
 
 		Embassy.CreateMap = function(setup) {
@@ -16,19 +26,37 @@ if (!this.Embassy)
 			
 			var meta = $("meta");
 			
-			var geoMap = {};
+			var metaMap = $.extend({}, emptyMap);
 			
 			for (var i = 0; i < meta.length; i++)
 			{
 				if(meta[i].name === "geo.placename")
 				{
-					geoMap.placename = meta[i].content;
+					metaMap.displayName = meta[i].content;
+				}
+				
+				if(meta[i].name === "geo.position")
+				{
+					
+					var tmp = meta[i].content.split(';')
+					metaMap.lat = tmp[0];
+					metaMap.lng = tmp[1];
 				}
 			}
 			
-			console.log(geoMap.placename);
+			metaMap.name = 'schoolmap';
+			var metaStreetView = $.extend({}, metaMap);
+			
+			metaStreetView.type = 'streetView';
+			metaStreetView.name = 'schoolstreet';
+			metaStreetView.displayName = 'Meta Street';
+			
+			Embassy.AddMap(metaMap);
+			Embassy.AddMap(metaStreetView);
+			
+			
 		};
-		
+
 		
 		Embassy.AddMap = function (opt) {
 		
