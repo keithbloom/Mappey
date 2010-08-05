@@ -21,7 +21,13 @@ if (!this.Embassy)
 		}; 
 	
 		var maps = null;
-
+	
+		var htmlForMaps = {
+			normal: '<div style="height: 0; overflow: hidden; margin-left: -4000px;"><div id="name" style="width:600px; height:450px;"></div></div>',
+			streetView: '<div style="display: none;"><div id="name" style="width:600px; height:450px; overflow: hidden;"></div></div>',
+			li: '<li id="icon" class="type"><a id="name" href="#name">display</a></li>'
+		};
+	
 		Embassy.CreateMap = function(setup) {
 			
 			if(maps === null)
@@ -79,11 +85,11 @@ if (!this.Embassy)
 			maps.push(opt);	
 			opt.origin = Embassy.MapOrigin(opt);
 			
-			var newDiv = '<div style="height: 0; overflow: hidden;"><div id="' + opt.name + '" style="width:550px; height:400px;"></div></div>'
+
 			var newListItem = '<li id="icon" class="' + opt.type + '"><a id="' + opt.name + '" href="#' + opt.name + '">' + opt.displayName + '</a></li>';
-			
-			$("#mapDivs").append(newDiv);
-			$("#mapLinks").append(newListItem);
+
+			$("#mapDivs").append(htmlForMaps[opt.type].replace('name', opt.name));
+			$("#mapLinks").append(htmlForMaps.li.replace('type', opt.type).replace(/name/gi, opt.name).replace('display', opt.displayName));
 			
 			$("a#" + opt.name).fancybox({
 				'hideOnContentClick': false,
@@ -190,7 +196,6 @@ if (!this.Embassy)
 			}
 			return opt.origin;
 		};
-
 		
 		Embassy.AddMarker = function(map, data){
 		
