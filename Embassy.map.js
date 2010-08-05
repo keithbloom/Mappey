@@ -10,6 +10,11 @@ if (!this.Embassy)
 		lng: 0,
 		name: 'Map',
 		type: 'normal',
+		markers: [{
+					lat: 0, 
+					lng: 0, 
+					text: ""
+					}],
 		displayName: 'Lots of map markers',
 		height: 700,
 		width: 400
@@ -27,20 +32,22 @@ if (!this.Embassy)
 			var meta = $("meta");
 			
 			var metaMap = $.extend({}, emptyMap);
+			metaMap.displayName = setup === undefined ? "School Streetview" : setup.normalmap;
 			
 			for (var i = 0; i < meta.length; i++)
 			{
 				if(meta[i].name === "geo.placename")
 				{
-					metaMap.displayName = setup === undefined ? normalmeta[i].content : setup.normalmap;
+					metaMap.markers[0].text = meta[i].content;
 				}
 				
 				if(meta[i].name === "geo.position")
 				{
-					
 					var tmp = meta[i].content.split(';')
 					metaMap.lat = tmp[0];
 					metaMap.lng = tmp[1];
+					metaMap.markers[0].lat = tmp[0];
+					metaMap.markers[0].lng = tmp[1];
 				}
 			}
 			
@@ -54,7 +61,7 @@ if (!this.Embassy)
 			
 			metaStreetView.type = 'streetView';
 			metaStreetView.name = 'schoolstreet';
-			metaStreetView.displayName = 'Meta Street';
+			metaStreetView.displayName = setup === undefined ? 'School Streetview' : setup.streetname;
 			
 			
 			Embassy.AddMap(metaStreetView);
