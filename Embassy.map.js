@@ -16,15 +16,15 @@ if (!this.Embassy)
 					text: ""
 					}],
 		displayName: 'Lots of map markers',
-		height: 700,
-		width: 400
+		height: 400,
+		width: 700
 		}; 
 	
 		var maps = null;
 	
 		var htmlForMaps = {
 			normal: '<div style="height: 0; overflow: hidden; margin-left: -4000px;"><div id="name" style="width:600px; height:450px;"></div></div>',
-			streetView: '<div style="display: none;"><div id="name" style="width:600px; height:450px; overflow: hidden;"></div></div>',
+			streetView: '<div style="display: none;"><div id="name" style="width:700px; height:450px; overflow: hidden;"></div></div>',
 			li: '<li id="icon" class="type"><a id="name" href="#name">display</a></li>'
 		};
 	
