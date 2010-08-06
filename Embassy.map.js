@@ -44,7 +44,7 @@ if (!this.Embassy)
 			{
 				if(meta[i].name === "geo.placename")
 				{
-					metaMap.markers[0].text = meta[i].content;
+					metaMap.markers[0].text = meta[i].content.replace(/,/gi, '<br />');
 				}
 				
 				if(meta[i].name === "geo.position")
@@ -110,7 +110,7 @@ if (!this.Embassy)
 			for(var i = 0; i < maps.length; i++) 
 			{
 				if (maps[i].name === name) {
-					console.log(maps[i].map);
+
 					if (maps[i].map !== undefined) {
 						return;
 					}
