@@ -6,9 +6,9 @@
 <title>Embassy : English schools & courses in USA, England, Australia, New Zealand</title>
 <meta name="description" content="Embassy CES: English language courses - study English. English language, English examinations, Business English, vacation English, English lessons.  " />
 <meta name="keywords" content="english, courses, language, schools, learn, lessons, abroad, study, usa, england, australia, new zealand ">
-<meta name="geo.position" content="40.7472;-73.993399">
-<meta name="geo.placename" content="Rockwood Rural Municipality, Manitoba, Canada">
-<meta name="geo.region" content="ca-mb">
+<meta name="geo.position" content="26.120355;-80.144341">
+<meta name="geo.placename" content="Embassy Fort Lauderdale, Las Olas Circle, 200 SW 1st Avenue, Suite 108, Fort Lauderdale FL33301">
+
 
 
 <link href="/css_v2/reset.css" rel="stylesheet" type="text/css" />
@@ -154,50 +154,24 @@ case "quiz":
 
  
  <script>
- 
- 
-	$(document).ready(function () {Embassy.CreateMap(
-			{
-				streetview: true,
-				streetname: "School Streetview",
-				normalmap: "School location"
-			}); 
-		});
-	
-	var normalMap = {
-		lat: 40.7472,
-		lng: -73.993399,
-		markers: [
-					{
-					lat: 40.7472, 
-					lng: -73.993399, 
-					text: "Embassy New York, <BR>328 Seventh Avenue, <BR>NY 10001"
-					},
-					{
-					lat: 40.7412, 
-					lng: -73.993299, 
-					text: "Keith's house"
-					}
-				],
-		name: 'Map',
-		type: 'normal',
-		displayName: 'Lots of map markers',
-		height: 700,
-		width: 400
-	}; 
-	$(document).ready(function () {Embassy.AddMap(normalMap); });
-	
-	
-	</script>      
+var options = {
+    streetview: true,
+    streetname: "School streetview",
+    normalmap: "School location"
+};
 
-	
-	<div id="mapDivs">
-	</div>
-	
-	<div id="right_links">
-		<ul id="mapLinks">
-		</ul>
-	</div>
+$(document).ready(function () {Embassy.CreateMap(options); });
+        
+    
+    </script>      
+    
+    <div id="mapDivs">
+    </div>
+    
+    <div id="media_links">
+        <ul id="mapLinks">
+        </ul>
+    </div>
 
 
 	
