@@ -77,7 +77,6 @@ if (!this.Embassy)
 			metaStreetView.lng = setup.streetview.lng || metaMap.lng;
 			metaStreetView.displayName = setup === undefined ? 'School Streetview' : setup.streetname;
 			
-			console.log("Create" + metaStreetView.lat + ' ' + metaStreetView.lng);
 			Embassy.AddMap(metaStreetView);
 			
 			
@@ -91,7 +90,6 @@ if (!this.Embassy)
 				return;
 			}
 			
-			console.log("Add " + opt.origin + ' ' + opt.name);
 			opt.origin = Embassy.MapOrigin(opt);
 			
 			var newListItem = '<li id="icon" class="' + opt.type + '"><a id="' + opt.name + '" href="#' + opt.name + '">' + opt.displayName + '</a></li>';
@@ -168,7 +166,6 @@ if (!this.Embassy)
 		
 		Embassy.StreetView = function(target){
 			
-			console.log("Streetview " + target.origin);
 			
 			if(target.div === undefined)
 			{
