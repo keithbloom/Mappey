@@ -2,8 +2,9 @@ if (!this.Embassy)
 	{
 		var Embassy = {};
 	}
-		
-	(function (){
+	
+
+		(function (){
 
 		var emptyMap = {
 		lat: 0,
@@ -32,7 +33,6 @@ if (!this.Embassy)
 		};
 	
 		Embassy.CreateMap = function(setup) {
-			
 			if(maps === null)
 			{
 				maps = new Array();
@@ -63,16 +63,21 @@ if (!this.Embassy)
 			metaMap.name = 'schoolmap';
 			Embassy.AddMap(metaMap);
 			
-			if (!setup.streetview) {
+			if (!setup.streetview || !setup.streetview.display) {
 				return;
 			}
 			var metaStreetView = $.extend({}, metaMap);
 			
+			metaStreetView.origin = undefined;
 			metaStreetView.type = 'streetView';
 			metaStreetView.name = 'schoolstreet';
+			
+
+			metaStreetView.lat = setup.streetview.lat || metaMap.lat;
+			metaStreetView.lng = setup.streetview.lng || metaMap.lng;
 			metaStreetView.displayName = setup === undefined ? 'School Streetview' : setup.streetname;
 			
-			
+			console.log("Create" + metaStreetView.lat + ' ' + metaStreetView.lng);
 			Embassy.AddMap(metaStreetView);
 			
 			
@@ -85,11 +90,10 @@ if (!this.Embassy)
 			{
 				return;
 			}
-
-			maps.push(opt);	
+			
+			console.log("Add " + opt.origin + ' ' + opt.name);
 			opt.origin = Embassy.MapOrigin(opt);
-		
-
+			
 			var newListItem = '<li id="icon" class="' + opt.type + '"><a id="' + opt.name + '" href="#' + opt.name + '">' + opt.displayName + '</a></li>';
 
 			$("#mapDivs").append(htmlForMaps[opt.type].replace('name', opt.name));
@@ -103,7 +107,7 @@ if (!this.Embassy)
 			});
 			
 			opt.div = document.getElementById(opt.name);
-			
+			maps.push(opt);	
 			return opt;
 		}
 		
@@ -164,6 +168,8 @@ if (!this.Embassy)
 		
 		Embassy.StreetView = function(target){
 			
+			console.log("Streetview " + target.origin);
+			
 			if(target.div === undefined)
 			{
 				return;
@@ -179,7 +185,7 @@ if (!this.Embassy)
 			target.map = new GStreetviewPanorama(target.div, panomaps);
 			
 			var handleNoFlash = function (errorCode) {
-				if (errorCode == FLASH_UNAVAILABLE)  {
+				if (errorCode == 603)  {
 					alert("Error: Flash doesn't appear to be supported by your browser");
 					return;
 				  }

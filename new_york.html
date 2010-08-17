@@ -36,7 +36,12 @@
 	
         <!-- <script type="text/javascript" src="http://w.sharethis.com/widget/?tabs=web%2Cpost%2Cemail&amp;charset=utf-8&amp;services=%2Cfacebook%2Cmyspace%2Cdelicious%2Cstumbleupon%2Cgoogle_bmarks%2Cyahoo_bmarks%2Cyahoo_myweb%2Cwindows_live%2Cfriendfeed%2Cxanga%2Cmixx%2Cfurl%2Cblinklist%2Cmagnolia%2Cmister_wong%2Cblogmarks%2Cfaves%2Ccurrent%2Csimpy%2Cmeneame%2Cyigg%2Coknotizie%2Cfresqui%2Cdiigo%2Ccare2%2Chugg%2Cfunp%2Ckirtsy%2Csphinn&amp;style=default&amp;publisher=f2f162cf-bf39-4b11-b688-e3c69644b5f2&amp;popup=false&amp;embeds=true"></script> -->
 
-<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAqLmZuwhlFih2of7XrBYIDBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSRq8rvO9-jrIiIctVwdw3u0Vul2w" type="text/javascript"></script>		
+		<script>
+		if(!tick) {
+	var tick = function () {};
+}
+		</script>
+		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAqLmZuwhlFih2of7XrBYIDBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSRq8rvO9-jrIiIctVwdw3u0Vul2w" type="text/javascript"></script>		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
 		<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.1.pack.js"></script>
         <link rel="stylesheet" href="fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen" />
@@ -155,9 +160,9 @@ case "quiz":
  
  <script>
 var options = {
-    streetview: true,
-    streetname: "School streetview",
-    normalmap: "School location"
+	streetview: {display: true},
+	streetname: "School streetview",
+	normalmap: "School location"
 };
 
 $(document).ready(function () {Embassy.CreateMap(options); });
@@ -192,9 +197,6 @@ $(document).ready(function () {Embassy.CreateMap(options); });
 
     
     <H3>Introducing Embassy New York</H3><BR>
-<CENTER><A id=e9ede059-9883-4788-ab8d-aa4df843740f style="DISPLAY: block; WIDTH: 402px; HEIGHT: 268px" onclick=return(false); href="ioEditor.asp?EltGuid=A84DDBDE524042149C806F0EBBE25D5B&BackAsp=/CMS/ioRD.asp%3FAction%3DEditElement%26GUID%3DA84DDBDE524042149C806F0EBBE25D5B%26ExtendedInfo%3D0%26EltType%3D32%26EltMaxSize%3D0%26EltFlags%3D1048576%26DirectEditFlags%3D0%26DeactivateTextFilter%3D0%26OpenerIsRedDot%3D1%26DummyRefreshTime%3D1272032564415&CancelAsp=&FlatStyle=yes&HideSave=yes&EditorFlags=807450742&FontFace=&FontSize=&FontColor=&ExtendedInfo=0#" rel=videoGUID=e9ede059-9883-4788-ab8d-aa4df843740f&amp; width="402" height="268">Embassy in New York - an introduction</A>
-<SCRIPT src="http://360.sorensonmedia.com/e9ede059-9883-4788-ab8d-aa4df843740f/embed.js" type=text/javascript></SCRIPT>
- </CENTER>
     
 
 <!-- Close div videoPlayerWrapper --> 
