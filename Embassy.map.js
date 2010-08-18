@@ -18,7 +18,8 @@ if (!this.Embassy)
 					}],
 		displayName: 'Lots of map markers',
 		height: 400,
-		width: 700
+		width: 700,
+		zoom: 12
 		}; 
 	
 		var maps = null;
@@ -42,6 +43,7 @@ if (!this.Embassy)
 			
 			var metaMap = $.extend({}, emptyMap);
 			metaMap.displayName = setup === undefined ? "School Streetview" : setup.normalmap;
+			metaMap.zoom = setup.zoom || metaMap.zoom;
 			
 			for (var i = 0; i < meta.length; i++)
 			{
@@ -140,8 +142,8 @@ if (!this.Embassy)
 			}
 			
 			var googlemaps = {
-				zoom: 12,
-				center: target.origin,
+				zoom: target.zoom,
+      			      center: target.origin,
 				size: new GSize(target.width,target.height)
 				};
 
@@ -149,7 +151,7 @@ if (!this.Embassy)
 			target.map = new GMap2(target.div, googlemaps);
             target.map.addControl(new GSmallMapControl());
             target.map.addControl(new GMapTypeControl());
-            target.map.setCenter(target.origin ,14);
+            target.map.setCenter(target.origin ,target.zoom);
 
 			if (target.markers === undefined)
 			{
@@ -218,5 +220,3 @@ if (!this.Embassy)
 		};
 		
 	}());
-		
-
