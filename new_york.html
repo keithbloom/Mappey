@@ -160,10 +160,14 @@ case "quiz":
  
  <script>
 var options = {
-	streetview: {display: true},
+	streetview: {display: true, pov: {
+    pitch: 1,
+    yaw: 178
+  }
+},
 	streetname: "School streetview",
-	normalmap: "School location"
-};
+  normalmap: "School location",
+  };
 
 $(document).ready(function () {Embassy.CreateMap(options); });
         
