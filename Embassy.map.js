@@ -19,14 +19,11 @@ if (!this.Embassy)
 		displayName: 'Lots of map markers',
 		height: 400,
 		width: 700,
-<<<<<<< HEAD
 		zoom: 12
-=======
     pov: {
         yaw: 0,
         zoom: 1
     }
->>>>>>> 2cab50f3f73de3bbd3ddd81295db3e2be6170fbd
 		}; 
 	
 		var maps = null;
