@@ -19,7 +19,14 @@ if (!this.Embassy)
 		displayName: 'Lots of map markers',
 		height: 400,
 		width: 700,
+<<<<<<< HEAD
 		zoom: 12
+=======
+    pov: {
+        yaw: 0,
+        zoom: 1
+    }
+>>>>>>> 2cab50f3f73de3bbd3ddd81295db3e2be6170fbd
 		}; 
 	
 		var maps = null;
@@ -77,6 +84,10 @@ if (!this.Embassy)
 
 			metaStreetView.lat = setup.streetview.lat || metaMap.lat;
 			metaStreetView.lng = setup.streetview.lng || metaMap.lng;
+      metaStreetView.pov.yaw = setup.streetview.pov.yaw || metaMap.pov.lng;
+      metaStreetView.pov.pitch = setup.streetview.pov.pitch || metaMap.pov.pitch;
+        
+
 			metaStreetView.displayName = setup === undefined ? 'School Streetview' : setup.streetname;
 			
 			Embassy.AddMap(metaStreetView);
@@ -178,7 +189,8 @@ if (!this.Embassy)
 				latlng: target.origin,
 				features: {
 					userPhotos: false
-				}
+				},
+pov: target.pov
 			};
 			
 			target.map = new GStreetviewPanorama(target.div, panomaps);
